@@ -36,8 +36,12 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+[m,n]=size(X);
 
+predictions = sigmoid(X*theta);
 
+J = mean((-y.*log(predictions)-(1-y).*log(1-predictions))) + lambda/(2*m)*sum(theta(2:end).^2);
+grad = (1/m)*X'*(predictions-y) + [0; lambda*theta(2:end)/m];
 
 
 

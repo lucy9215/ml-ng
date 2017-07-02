@@ -30,7 +30,8 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
+probabilities = X*all_theta' ;
+[max_prob,p]=max(probabilities,[],2);
 
 
 
