@@ -87,9 +87,9 @@ Delta2 = delta3'*A2;
 %Delta1 = delta2(:,2:end)'*A1;
 Delta1 = delta2'*A1; %delta2(:,2:end)'*A1;
 
-Theta2_grad(:, 2:end) = (1/m)*Delta2(:, 2:end) + lambda*Theta2(:, 2:end);
+Theta2_grad(:, 2:end) = (1/m)*(Delta2(:, 2:end) + lambda*Theta2(:, 2:end));
 Theta2_grad(:, 1) = (1/m)*Delta2(:, 1);
-Theta1_grad(:, 2:end) = (1/m)*Delta1(:, 2:end) + lambda*Theta1(:, 2:end);
+Theta1_grad(:, 2:end) = (1/m)*(Delta1(:, 2:end) + lambda*Theta1(:, 2:end));
 Theta1_grad(:, 1) = (1/m)*Delta1(:, 1);
 
 
