@@ -97,7 +97,10 @@ while ~isempty(email_contents)
     %       str2). It will return 1 only if the two strings are equivalent.
     %
 
-
+    % name={'Alice','Bob','John','Jenny','Richard'};
+    % [bool,inx]=ismember('Jenny',name);
+    [row col]=find(cellfun(@(x) strcmp(x,str),vocabList));
+    word_indices = [word_indices; row];
 
 
 
