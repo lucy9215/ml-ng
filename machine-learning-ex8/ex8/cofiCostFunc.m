@@ -40,10 +40,18 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+Predictions = X* Theta';
+Error = (Predictions - Y).*R;
 
+J = 1/2 * sum(sum(Error.^2)) + lambda/2*(sum(sum(Theta.^2)) + sum(sum(X.^2)));
 
+for i = 1: num_movies
+    X_grad(i,:) = Error(i, :)*Theta + lambda * X(i, :);
+end 
 
-
+for j = 1: num_users
+    Theta_grad(j, :) = Error(:, j)'*X + lambda * Theta(j, :);
+end
 
 
 
