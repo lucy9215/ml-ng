@@ -80,12 +80,12 @@ J = mean(sum((-y_one_hot.*log(A3)-(1-y_one_hot).*log(1-A3)),2))...
     + lambda/(2*m)*(sum(sum(Theta1(:,2:end).^2))+sum(sum(Theta2(:,2:end).^2)));
 
 delta3 = A3 - y_one_hot;
-%delta2 = delta3*Theta2.*A2.*(1-A2);
-delta2 = delta3*Theta2(:,2:end).*sigmoidGradient(Z2'); %A2.*(1-A2);
+%delta2 = delta3*Theta2.*A2.*(1-A2); % equivalent to the line below. 这里Theta没有(:,2:end)是因为就算计算了这一列，在后续计算中可以抛弃这一列
+delta2 = delta3*Theta2(:,2:end).*sigmoidGradient(Z2'); % sigmoidGradient(z) == sigmoid(z).*(1-sigmoid(z))
 
 Delta2 = delta3'*A2;
-%Delta1 = delta2(:,2:end)'*A1;
-Delta1 = delta2'*A1; %delta2(:,2:end)'*A1;
+%Delta1 = delta2(:,2:end)'*A1; % equivalent to the line below.
+Delta1 = delta2'*A1; % sigmoidGradient(z) == sigmoid(z).*(1-sigmoid(z))
 
 Theta2_grad(:, 2:end) = (1/m)*(Delta2(:, 2:end) + lambda*Theta2(:, 2:end));
 Theta2_grad(:, 1) = (1/m)*Delta2(:, 1);
